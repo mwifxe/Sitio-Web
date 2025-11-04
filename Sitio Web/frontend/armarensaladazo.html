@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arma Tu Ensaladazo - Ensaladazo!</title>
+    <link rel="stylesheet" href="CSS/styles-armarensaladazo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Animation for selected items */
+        @keyframes bounce {
+            0%, 20%, 60%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-salad-container">
+        <!-- Header Section -->
+        <section class="custom-header">
+            <div class="custom-header-content">
+                <div class="custom-icon">
+                    <i data-lucide="chef-hat" size="40"></i>
+                </div>
+                <h1 class="custom-title">¡Arma Tu Propio Ensaladazo! 🥗</h1>
+                <p class="custom-subtitle">¿Ninguna de nuestras ensaladas te convence? ¡Crea la tuya!</p>
+                <p class="custom-tagline">
+                    Mezcla y combina tus ingredientes favoritos para crear la ensalada perfecta. 
+                    Tú eliges cada detalle, nosotros la preparamos con todo el amor y frescura.
+                </p>
+            </div>
+        </section>
+
+        <!-- Builder Layout -->
+        <div class="builder-layout">
+            <!-- Left Column - Ingredients Selection -->
+            <div class="categories-section">
+                <div class="categories-header">
+                    <h2 class="categories-title">Elige tus ingredientes</h2>
+                    <div class="progress-indicator">
+                        <span>Tu selección:</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span id="selected-count">0/8</span>
+                    </div>
+                </div>
+
+                <!-- Categories Navigation -->
+                <div class="categories-nav">
+                    <button class="category-btn active" data-category="bases">
+                        <i data-lucide="leaf"></i>
+                        Bases Verdes
+                    </button>
+                    <button class="category-btn" data-category="proteins">
+                        <i data-lucide="egg"></i>
+                        Proteínas
+                    </button>
+                    <button class="category-btn" data-category="vegetables">
+                        <i data-lucide="carrot"></i>
+                        Vegetales
+                    </button>
+                    <button class="category-btn" data-category="toppings">
+                        <i data-lucide="nut"></i>
+                        Toppings
+                    </button>
+                    <button class="category-btn" data-category="dressings">
+                        <i data-lucide="droplets"></i>
+                        Aderezos
+                    </button>
+                </div>
+
+                <!-- Ingredients Grid -->
+                <div class="ingredients-grid" id="ingredients-grid">
+                    <!-- Ingredients will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <!-- Right Column - Order Summary -->
+            <div class="summary-section">
+                <h3 class="summary-title">Tu Ensaladazo Personalizado</h3>
+                
+                <div class="salad-preview" id="salad-preview">
+                    <i data-lucide="salad" size="60"></i>
+                </div>
+
+                <div class="selected-ingredients" id="selected-ingredients">
+                    <div class="empty-state">
+                        <p style="text-align: center; color: var(--text-gray);">
+                            Selecciona ingredientes para ver tu ensalada
+                        </p>
+                    </div>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span class="total-price" id="total-price">$0.00</span>
+                </div>
+
+                <button class="add-to-cart-btn" id="add-to-cart-btn" disabled>
+                    <i data-lucide="shopping-cart"></i>
+                    Agregar al Carrito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ingredients database
+        const ingredients = {
+            bases: [
+                { id: 1, name: "Lechuga Romana", price: 1.50, icon: "leaf" },
+                { id: 2, name: "Espinaca Fresca", price: 1.75, icon: "leaf" },
+                { id: 3, name: "Mix de Lechugas", price: 2.00, icon: "leaf" },
+                { id: 4, name: "Rúcula", price: 1.80, icon: "leaf" },
+                { id: 5, name: "Kale Orgánico", price: 2.25, icon: "leaf" }
+            ],
+            proteins: [
+                { id: 6, name: "Pollo a la Plancha", price: 3.50, icon: "drumstick" },
+                { id: 7, name: "Salmón Grillado", price: 4.50, icon: "fish" },
+                { id: 8, name: "Tofu Orgánico", price: 3.00, icon: "egg" },
+                { id: 9, name: "Huevo Duro", price: 1.50, icon: "egg" },
+                { id: 10, name: "Garbanzos", price: 2.00, icon: "circle" },
+                { id: 11, name: "Atún", price: 3.25, icon: "fish" }
+            ],
+            vegetables: [
+                { id: 12, name: "Tomate Cherry", price: 1.25, icon: "circle" },
+                { id: 13, name: "Pepino", price: 1.00, icon: "circle" },
+                { id: 14, name: "Zanahoria", price: 0.75, icon: "carrot" },
+                { id: 15, name: "Pimiento Rojo", price: 1.50, icon: "circle" },
+                { id: 16, name: "Cebolla Morada", price: 0.80, icon: "circle" },
+                { id: 17, name: "Brócoli", price: 1.75, icon: "circle" },
+                { id: 18, name: "Aguacate", price: 2.50, icon: "circle" }
+            ],
+            toppings: [
+                { id: 19, name: "Nueces", price: 1.75, icon: "nut" },
+                { id: 20, name: "Semillas de Girasol", price: 1.25, icon: "circle" },
+                { id: 21, name: "Queso Feta", price: 2.00, icon: "circle" },
+                { id: 22, name: "Crutones", price: 1.00, icon: "square" },
+                { id: 23, name: "Pasas", price: 1.50, icon: "circle" },
+                { id: 24, name: "Aceitunas", price: 1.25, icon: "circle" }
+            ],
+            dressings: [
+                { id: 25, name: "Vinagreta Balsámica", price: 0.50, icon: "droplets" },
+                { id: 26, name: "Ranch", price: 0.75, icon: "droplets" },
+                { id: 27, name: "César", price: 0.75, icon: "droplets" },
+                { id: 28, name: "Aceite de Oliva", price: 0.25, icon: "droplets" },
+                { id: 29, name: "Limón", price: 0.25, icon: "lemon" },
+                { id: 30, name: "Miel-Mostaza", price: 0.80, icon: "droplets" }
+            ]
+        };
+
+        let selectedIngredients = [];
+        let currentCategory = 'bases';
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCategories();
+            loadIngredients('bases');
+            updateSummary();
+            
+            // Initialize Lucide icons
+            lucide.createIcons();
+        });
+
+        // Category navigation
+        function initializeCategories() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Load ingredients for selected category
+                    currentCategory = this.dataset.category;
+                    loadIngredients(currentCategory);
+                });
+            });
+        }
+
+        // Load ingredients for a category
+        function loadIngredients(category) {
+            const grid = document.getElementById('ingredients-grid');
+            const categoryIngredients = ingredients[category];
+            
+            grid.innerHTML = categoryIngredients.map(ingredient => {
+                const isSelected = selectedIngredients.some(item => item.id === ingredient.id);
+                return `
+                    <div class="ingredient-card ${isSelected ? 'selected' : ''}" 
+                         data-id="${ingredient.id}" 
+                         data-category="${category}">
+                        ${isSelected ? '<div class="selected-badge">✓</div>' : ''}
+                        <div class="ingredient-icon">
+                            <i data-lucide="${ingredient.icon}"></i>
+                        </div>
+                        <div class="ingredient-name">${ingredient.name}</div>
+                        <div class="ingredient-price">$${ingredient.price.toFixed(2)}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add event listeners to ingredient cards
+            grid.querySelectorAll('.ingredient-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    toggleIngredient(this);
+                });
+            });
+
+            // Update Lucide icons for new elements
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+
+        // Toggle ingredient selection
+        function toggleIngredient(card) {
+            const ingredientId = parseInt(card.dataset.id);
+            const category = card.dataset.category;
+            const ingredient = ingredients[category].find(item => item.id === ingredientId);
+
+            const isAlreadySelected = selectedIngredients.some(item => item.id === ingredientId);
+
+            if (isAlreadySelected) {
+                // Remove ingredient
+                selectedIngredients = selectedIngredients.filter(item => item.id !== ingredientId);
+                card.classList.remove('selected');
+                card.querySelector('.selected-badge')?.remove();
+            } else {
+                // Check category limits
+                const categoryCount = selectedIngredients.filter(item => {
+                    for (let cat in ingredients) {
+                        if (ingredients[cat].some(ing => ing.id === item.id)) {
+                            return cat === category;
+                        }
+                    }
+                    return false;
+                }).length;
+
+                if (category === 'bases' && categoryCount >= 1) {
+                    alert('Solo puedes elegir una base para tu ensalada');
+                    return;
+                }
+
+                if (category === 'dressings' && categoryCount >= 1) {
+                    alert('Solo puedes elegir un aderezo para tu ensalada');
+                    return;
+                }
+
+                if (selectedIngredients.length >= 8) {
+                    alert('Máximo 8 ingredientes por ensalada');
+                    return;
+                }
+
+                // Add ingredient
+                selectedIngredients.push(ingredient);
+                card.classList.add('selected');
+                card.innerHTML += '<div class="selected-badge">✓</div>';
+                card.classList.add('bounce');
+                setTimeout(() => card.classList.remove('bounce'), 600);
+            }
+
+            updateSummary();
+            updateProgress();
+        }
+
+        // Update progress indicator
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const selectedCount = document.getElementById('selected-count');
+            const progress = (selectedIngredients.length / 8) * 100;
+            
+            progressFill.style.width = `${progress}%`;
+            selectedCount.textContent = `${selectedIngredients.length}/8`;
+        }
+
+        // Update order summary
+        function updateSummary() {
+            const selectedContainer = document.getElementById('selected-ingredients');
+            const totalPriceElement = document.getElementById('total-price');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const saladPreview = document.getElementById('salad-preview');
+
+            // Calculate total price
+            const totalPrice = selectedIngredients.reduce((sum, item) => sum + item.price, 0);
+            totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+
+            // Update selected ingredients list
+            if (selectedIngredients.length === 0) {
+                selectedContainer.innerHTML = `
+                    <div class="empty-state">
+                        <p style="text-align: center; color: var(--text-gray);">
+                            Selecciona ingredientes para ver tu ensalada
+                        </p>
+                    </div>
+                `;
+                saladPreview.innerHTML = '<i data-lucide="salad" size="60"></i>';
+                addToCartBtn.disabled = true;
+            } else {
+                selectedContainer.innerHTML = selectedIngredients.map(ingredient => `
+                    <div class="selected-item">
+                        <span class="item-name">
+                            <i data-lucide="${ingredient.icon}" size="16"></i>
+                            ${ingredient.name}
+                        </span>
+                        <span class="item-price">$${ingredient.price.toFixed(2)}</span>
+                    </div>
+                `).join('');
+
+                // Update salad preview with more ingredients
+                if (selectedIngredients.length >= 5) {
+                    saladPreview.innerHTML = '<i data-lucide="heart" size="60" style="color: #e91e63;"></i>';
+                } else if (selectedIngredients.length >= 3) {
+                    saladPreview.innerHTML = '<i data-lucide="star" size="60" style="color: #ff9800;"></i>';
+                } else {
+                    saladPreview.innerHTML = '<i data-lucide="salad" size="60"></i>';
+                }
+
+                addToCartBtn.disabled = false;
+            }
+
+            // Update Lucide icons
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+
+        // Add to cart functionality
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            if (selectedIngredients.length === 0) return;
+
+            // Create custom salad product
+            const customSalad = {
+                id: 'custom-' + Date.now(),
+                name: 'Ensaladazo Personalizado',
+                description: 'Tu creación única con: ' + selectedIngredients.map(item => item.name).join(', '),
+                price: selectedIngredients.reduce((sum, item) => sum + item.price, 0),
+                ingredients: selectedIngredients,
+                image: null,
+                quantity: 1
+            };
+
+            // Add to cart (using localStorage like in your cart system)
+            let cart = JSON.parse(localStorage.getItem('ensaladazo_cart') || '[]');
+            cart.push(customSalad);
+            localStorage.setItem('ensaladazo_cart', JSON.stringify(cart));
+
+            // Show success message
+            alert('¡Tu Ensaladazo personalizado se agregó al carrito! 🎉');
+
+            // Reset builder
+            selectedIngredients = [];
+            loadIngredients(currentCategory);
+            updateSummary();
+            updateProgress();
+
+            // Update cart count if the function exists
+            if (typeof updateCartCounter === 'function') {
+                updateCartCounter();
+            }
+        });
+    </script>
+</body>
+</html>

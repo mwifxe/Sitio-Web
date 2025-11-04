@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre nuestro menú de ensaladas frescas: CobbFit, César, Tropical y Mediterránea. Ingredientes 100% orgánicos.">
+    <title>Menú - Ensaladazo!</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="CSS/styles-Menu.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- HEADER CON NAVEGACIÓN -->
+    <header class="header">
+        <nav class="nav">
+            <!-- Logo -->
+            <div class="nav-brand">
+                <a href="index.html" class="logo-hover">
+                    <img class="logo-image" src="Images/Logos/logo-removebg-preview.png" alt="Logo Ensaladazo!">
+                </a>
+            </div>
+
+            <!-- Menú de navegación -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="./menu.html" class="nav-link active">Menú</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <!-- Acciones usuario -->
+            <div class="nav-actions">
+                <a href="login.html" class="cta-button">Iniciar Sesión</a>
+                <a href="cart.html" class="cart-icon" aria-label="Ver carrito">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO DE MENÚ -->
+    <section class="menu-hero">
+        <div class="hero-overlay"></div>
+        <div class="menu-hero-content">
+            <h1>Nuestro <span class="highlight">Menú</span></h1>
+            <p class="menu-intro">
+                Cada ensalada es una experiencia única. Preparamos todo fresco cada día,
+                con ingredientes que hacen la diferencia. No es solo comida saludable,
+                es comida que realmente te va a gustar.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE ENSALADAS -->
+    <section class="menu-section">
+        <div class="container">
+        
+
+            <!-- Ensalada 1: CobbFit -->
+            <article class="menu-item-large">
+                <div class="item-image">
+                    <img src="Images/Ensaladas/cobbfit.jpeg" alt="Ensalada CobbFit con pollo, aguacate y tocino">
+                </div>
+                <div class="item-details">
+                    <h2>Ensalada CobbFit</h2>
+                    <p class="item-tagline">La favorita por una razón</p>
+                    <p class="item-description">
+                        Esta ensalada lo tiene todo. Lechuga fresca, tomate jugoso, aguacate cremoso,
+                        queso mozzarella derretido, tocino crujiente, pechuga de pollo a la parrilla,
+                        huevo duro y pan tostado doradito. Es el equilibrio perfecto entre sabor y
+                        nutrición. Ideal para cuando quieres algo completo que de verdad te llene.
+                    </p>
+                    <div class="item-highlights">
+                        <span class="highlight-badge">Alto en proteína</span>
+                        <span class="highlight-badge">Ingredientes frescos</span>
+                        <span class="highlight-badge">Súper completa</span>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">$4.00</span>
+                        <button class="order-btn" data-product="CobbFit" data-price="4.00">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Resto de tus ensaladas existentes... -->
+            <!-- Ensalada 2: César -->
+            <article class="menu-item-large">
+                <div class="item-image">
+                    <img src="Images/Ensaladas/cesar.jpeg" alt="Ensalada César clásica con pollo">
+                </div>
+                <div class="item-details">
+                    <h2>Ensalada César</h2>
+                    <p class="item-tagline">Un clásico que nunca falla</p>
+                    <p class="item-description">
+                        La César original, pero nuestra. Lechuga crujiente, pechuga de pollo jugosa,
+                        huevo duro, tomate fresco, queso mozzarella y pan tostado que le da ese toque
+                        especial. Simple, pero hecha bien. Es esa opción confiable cuando no quieres
+                        complicarte pero tampoco quieres sacrificar sabor.
+                    </p>
+                    <div class="item-highlights">
+                        <span class="highlight-badge">Clásica</span>
+                        <span class="highlight-badge">Ligera y satisfactoria</span>
+                        <span class="highlight-badge">Para todos los días</span>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">$3.25</span>
+                        <button class="order-btn" data-product="César" data-price="3.25">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Ensalada 3: Tropical -->
+            <article class="menu-item-large">
+                <div class="item-image">
+                    <img src="Images/Ensaladas/tropical.jpeg" alt="Ensalada Tropical con frutas frescas">
+                </div>
+                <div class="item-details">
+                    <h2>Ensalada Tropical</h2>
+                    <p class="item-tagline">Dale sabor a tu día</p>
+                    <p class="item-description">
+                        Mix de lechugas, pollo a la parrilla, piña fresca, mango, aguacate,
+                        almendras tostadas y un toque de vinagreta de cítricos. Es fresca,
+                        es diferente, y te va a sorprender. Perfecta para cuando quieres
+                        algo nuevo sin perder lo saludable.
+                    </p>
+                    <div class="item-highlights">
+                        <span class="highlight-badge">Frutas frescas</span>
+                        <span class="highlight-badge">Sabor único</span>
+                        <span class="highlight-badge">Refrescante</span>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">$3.75</span>
+                        <button class="order-btn" data-product="Tropical" data-price="3.75">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Ensalada 4: Mediterránea -->
+            <article class="menu-item-large">
+                <div class="item-image">
+                    <img src="Images/Ensaladas/mediterranea.jpeg" alt="Ensalada Mediterránea con queso feta">
+                </div>
+                <div class="item-details">
+                    <h2>Ensalada Mediterránea</h2>
+                    <p class="item-tagline">Sabores del mundo en tu plato</p>
+                    <p class="item-description">
+                        Lechugas mixtas, tomates cherry, pepino, aceitunas negras, queso feta,
+                        cebolla morada y pollo marinado. Todo con un aderezo de hierbas que
+                        te transporta. Es para los que quieren probar algo con personalidad
+                        y lleno de sabor auténtico.
+                    </p>
+                    <div class="item-highlights">
+                        <span class="highlight-badge">Sabores intensos</span>
+                        <span class="highlight-badge">Estilo mediterráneo</span>
+                        <span class="highlight-badge">Muy sabrosa</span>
+                    </div>
+                    <div class="item-footer">
+                        <span class="price">$3.50</span>
+                        <button class="order-btn" data-product="Mediterránea" data-price="3.50">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ADICIONAL -->
+    <section class="extras-section">
+        <div class="container">
+            <h2>¿Algo Más?</h2>
+            <div class="extras-grid">
+                <article class="extra-item">
+                    <i data-lucide="droplet" size="50"></i>
+                    <h3>Smoothie Verde</h3>
+                    <p>Espinaca, manzana verde, jengibre y menta. Energía pura.</p>
+                    <span class="extra-price">$2.75</span>
+                    <button class="extra-btn" data-product="Smoothie Verde" data-price="2.75">Agregar</button>
+                </article>
+                
+                <article class="extra-item">
+                    <i data-lucide="sparkles" size="50"></i>
+                    <h3>Aderezos Extra</h3>
+                    <p>Ranch, César, Balsámico, Miel Mostaza</p>
+                    <span class="extra-price">$0.50</span>
+                    <button class="extra-btn" data-product="Aderezo Extra" data-price="0.50">Agregar</button>
+                </article>
+                
+                <article class="extra-item">
+                    <i data-lucide="beef" size="50"></i>
+                    <h3>Proteína Extra</h3>
+                    <p>Más pollo, huevo o queso para tu ensalada</p>
+                    <span class="extra-price">$1.00</span>
+                    <button class="extra-btn" data-product="Proteína Extra" data-price="1.00">Agregar</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTÓN DE ENSALADA PERSONALIZADA - PRIMER ELEMENTO DESTACADO -->
+            <div class="custom-salad-card" onclick="location.href='armar-ensalada.html'">
+                <div class="card-background"></div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i data-lucide="sparkles" size="40"></i>
+                    </div>
+                    <h3 class="card-title">¿Ninguna te convence?<br><span class="highlight">¡Crea la tuya!</span></h3>
+                    <p class="card-description">
+                        Mezcla y combina tus ingredientes favoritos para crear la ensalada perfecta a tu gusto. 
+                        Tú eliges cada detalle, nosotros la preparamos con todo el amor y frescura.
+                    </p>
+                    <div class="card-features">
+                        <div class="feature">
+                            <i data-lucide="check" size="16"></i>
+                            <span>Elige tus ingredientes</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check" size="16"></i>
+                            <span>Precio según lo que elijas</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check" size="16"></i>
+                            <span>Totalmente personalizable</span>
+                        </div>
+                    </div>
+                    <a href="armarensaladazo.html" class="create-btn">
+                        <i data-lucide="chef-hat" size="20"></i>
+                        Armar Mi Ensaladazo
+                    </a>
+                </div>
+            </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-hover">
+                        <img class="logo-image" src="Images/Logos/logo-removebg-preview.png" alt="Logo Ensaladazo!" loading="lazy">
+                    </div>
+                    <p>Nutrición fresca para tu vida diaria</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="./menu.html">Menú</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-info">
+                    <h4>Horarios</h4>
+                    <p>Lun - Vie: 8:00 AM - 6:00 PM</p>
+                    <p>Sábado: 9:00 AM - 4:00 PM</p>
+                    <p>Domingo: 10:00 AM - 3:00 PM</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ensaladazo!. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="JavaScript/Inicio.js"></script>
+
+    <!-- Inicializar iconos -->
+    <script>
+        lucide.createIcons();
+        
+        // Hacer toda la card clickeable
+        document.querySelector('.custom-salad-card').addEventListener('click', function(e) {
+            if (e.target.tagName !== 'A') {
+                window.location.href = 'armar-ensalada.html';
+            }
+        });
+    </script>
+</body>
+</html>

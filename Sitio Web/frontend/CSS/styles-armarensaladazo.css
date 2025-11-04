@@ -1,0 +1,387 @@
+        :root {
+            --primary-green: #4CAF50;
+            --primary-dark: #2E7D32;
+            --secondary-orange: #FF9800;
+            --accent-yellow: #FFC107;
+            --bg-light: #F5F7FA;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .custom-salad-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        .custom-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path fill="%23FFFFFF" d="M50,15 C60,5 80,10 85,25 C90,40 75,55 60,60 C45,65 35,80 25,75 C15,70 10,50 20,40 C30,30 40,25 50,15 Z"/></svg>');
+        }
+
+        .custom-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .custom-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--primary-green);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .custom-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .custom-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .custom-tagline {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Builder Layout */
+        .builder-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .categories-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: var(--bg-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-green);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Categories Navigation */
+        .categories-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-btn.active {
+            background: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
+        }
+
+        .category-btn:hover:not(.active) {
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Ingredients Grid */
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .ingredient-card {
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .ingredient-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+            border-color: var(--primary-green);
+        }
+
+        .ingredient-card.selected {
+            background: rgba(76, 175, 80, 0.1);
+            border-color: var(--primary-green);
+            transform: scale(1.05);
+        }
+
+        .ingredient-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--primary-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .ingredient-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .ingredient-price {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .selected-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 25px;
+            height: 25px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .salad-preview {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+        }
+
+        .selected-ingredients {
+            margin-bottom: 2rem;
+        }
+
+        .selected-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .selected-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .item-price {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-top: 2px solid var(--bg-light);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .total-price {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-section {
+                position: static;
+                order: 2;
+            }
+
+            .categories-section {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-salad-container {
+                padding: 1rem;
+            }
+
+            .custom-title {
+                font-size: 2rem;
+            }
+
+            .ingredients-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+
+            .categories-nav {
+                flex-wrap: wrap;
+            }
+        }
